@@ -1,10 +1,10 @@
 #include <WiFi.h>
 #include <WiFiClient.h>
 #include <WebServer.h>
-#include "WebPages.h"
-#include "Comms.h"
 #include <ESPAsyncWebServer.h>
 #include <Update.h>
+#include "static/WebPages.h"
+#include "util/Comms.h"
 
 // wifi creds
 const char* ssid     = "Rocket Telemetry";

@@ -1,10 +1,10 @@
 #include <SPI.h>
 #include <LoRa.h>
 #include <Wire.h>
-#include "Comms.h"
+#include "util/Comms.h"
+#include "util/Logs.h"
 #include "Web.h"
 #include "UI.h"
-#include "Logs.h"
 
 void setup() {
   Serial.begin(115200);

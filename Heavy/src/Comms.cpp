@@ -2,15 +2,8 @@
 #include <SPI.h>
 #include <LoRa.h>
 #include <Wire.h>
-
-// pins
-#define BAND 866E6
-#define SCK 5
-#define MISO 19
-#define MOSI 27
-#define SS 18
-#define RST 23
-#define DIO0 26
+#include "util/Comms.h"
+#include "pins/loraPins.h"
 
 String LoRaData;
 long prevMillis = 0;
