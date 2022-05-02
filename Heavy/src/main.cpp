@@ -3,8 +3,8 @@
 #include <Wire.h>
 #include "util/Comms.h"
 #include "util/Logs.h"
-#include "Web.h"
-#include "UI.h"
+#include "main/Web.h"
+#include "main/UI.h"
 
 void setup() {
   Serial.begin(115200);
