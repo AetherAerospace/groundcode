@@ -1,3 +1,4 @@
+#include <Arduino.h>
 #include <WiFi.h>
 #include <WiFiClient.h>
 #include <WebServer.h>
@@ -62,22 +63,6 @@ void initWeb(){
         [](AsyncWebServerRequest *request, const String& filename, size_t index, uint8_t *data, size_t len, bool final) {
         handleDoUpdate(request, filename, index, data, len, final);}
     );
-    server.on("/readLog", HTTP_GET, [] (AsyncWebServerRequest *request) {
-        String logvalue = readLora();
-        String logData = logData + logvalue;
-        request->send(200, "text/plane", logData);
-    });
-
-    /*
-      TODO:
-      Reimplement buttons and calls, based on new flightcode
-
-      server.on(" ", HTTP_GET, [] (AsyncWebServerRequest *request) {
-          Serial.println(" ");
-          sendLora(" ");
-      });
-    */
-
     server.begin();
     Serial.println("HTTP server started");
 }

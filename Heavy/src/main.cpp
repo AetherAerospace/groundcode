@@ -11,18 +11,10 @@ void setup() {
   //initLog();
   initLora();
   Serial.println("initLora done");
-  //writeLog("testtest");
-  //sendLora("initLora done");
   initDisplay();
   Serial.println("initDisplay done");
-  //sendLora("initDisplay done");
-  initWeb();
-  Serial.println("initWeb done");
-  //sendLora("initWeb done");
-  //sendLora("Setup Done"); 
+  //initWeb();
   initButton();
-  //initLog();
-  //closeLog();
 }
 
 void loop() {

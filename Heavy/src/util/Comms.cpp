@@ -5,9 +5,9 @@
 #include "util/Comms.h"
 #include "pins/loraPins.h"
 
-String LoRaData;
-long prevMillis = 0;
-long intvl = 10;   
+String dataReceived;
+unsigned long prevMillis = 0;
+int intvl = 1000;   
 
 void initLora(){
     SPI.begin(SCK, MISO, MOSI, SS);
@@ -16,26 +16,15 @@ void initLora(){
         Serial.println("wasnt able to start lora");
         while (1);
     }
+    LoRa.setSyncWord(0xF3);
 }
 
-void sendLora(String messageToSend){
+void sendLora(String msg) {
     unsigned long currMillis = millis();
     if(currMillis - prevMillis > intvl) {
         prevMillis = currMillis;
         LoRa.beginPacket();
-        LoRa.print(messageToSend);
+        LoRa.print(msg);
         LoRa.endPacket();
-        Serial.println(messageToSend);
     }
-}
-
-String readLora(){
-    int packetSize = LoRa.parsePacket();
-    if (packetSize){
-        while(LoRa.available()){
-            LoRaData = LoRa.readString();
-            Serial.print(LoRaData);
-        }
-    }
-    return LoRaData;
 }

@@ -47,22 +47,13 @@ void loopDisplay() {
   display.println("AETHER GROUND STATION");
   display.setCursor(0,20);
   display.setTextSize(1);
-  display.print("Status: ");
-  display.print(readLora());      
   display.display();
-}
-
-void writeDisplay(String messageToDisplay){
-    display.println(messageToDisplay);
 }
 
 void loopButton(){
     int buttonState;
     buttonState = digitalRead(buttonPin);
     if(buttonState == HIGH){
-        /* 
-          TODO:
-          Reimplement engine kill based on new flightcode
-        */
+        sendLora("Ground Hello");
     }
 }

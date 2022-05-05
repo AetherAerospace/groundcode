@@ -1,4 +1,2 @@
-#include <Arduino.h>
-void sendLora(String messageToSend);
+void sendLora(String msg);
 void initLora();
-String readLora();
