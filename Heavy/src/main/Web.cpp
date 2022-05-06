@@ -1,15 +1,11 @@
 #include <Arduino.h>
-#include <WiFi.h>
-#include <WiFiClient.h>
 #include <WebServer.h>
 #include <ESPAsyncWebServer.h>
 #include <Update.h>
 #include "static/WebPages.h"
 #include "util/Comms.h"
-
-// wifi creds
-const char* ssid     = "Rocket Telemetry";
-const char* password = "rocketgobrr";
+#include "util/Serial.h"
+#include "Web.h"
 
 // start webserver on port 80
 AsyncWebServer server(80);
@@ -50,8 +46,6 @@ void handleDoUpdate(AsyncWebServerRequest *request, const String& filename, size
 
 // handle main webinterface
 void initWeb(){
-    WiFi.mode(WIFI_AP);
-    WiFi.softAP(ssid, password);
     server.on("/", HTTP_GET, [](AsyncWebServerRequest *request){
         request->send_P(200, "text/html", mainIndex);
     });
@@ -64,5 +58,5 @@ void initWeb(){
         handleDoUpdate(request, filename, index, data, len, final);}
     );
     server.begin();
-    Serial.println("HTTP server started");
+    srlInfo("AsyncHTTP initialized");
 }

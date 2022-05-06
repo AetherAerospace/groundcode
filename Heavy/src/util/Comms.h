@@ -1,3 +1,3 @@
-void sendLora(String msg);
-void handleLora();
-void initLora();
+void sendLoRa(String msg);
+bool checkComm();
+void initLoRa();

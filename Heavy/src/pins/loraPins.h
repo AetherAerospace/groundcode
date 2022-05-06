@@ -1,5 +1,4 @@
 // pins
-#define BAND 866E6
 #define SCK 5
 #define MISO 19
 #define MOSI 27
