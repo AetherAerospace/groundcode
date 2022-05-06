@@ -8,11 +8,12 @@
 //button pin
 const int buttonPin = 19;
 
+// run once
+bool once = false;
+
 // display size
 #define SCREEN_WIDTH 128
 #define SCREEN_HEIGHT 64
-
-int counter = 0;
 
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RST);
 
@@ -51,9 +52,8 @@ void loopDisplay() {
 }
 
 void loopButton(){
-    int buttonState;
-    buttonState = digitalRead(buttonPin);
-    if(buttonState == HIGH){
-        sendLora("Ground Hello");
-    }
+  sendLora("Ground Hello");
+  while (1) {
+    handleLora();
+  }
 }

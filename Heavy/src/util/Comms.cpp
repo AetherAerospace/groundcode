@@ -5,9 +5,9 @@
 #include "util/Comms.h"
 #include "pins/loraPins.h"
 
-String dataReceived;
+String LoRaData;
 unsigned long prevMillis = 0;
-int intvl = 1000;   
+int intvl = 100;   
 
 void initLora(){
     SPI.begin(SCK, MISO, MOSI, SS);
@@ -26,5 +26,18 @@ void sendLora(String msg) {
         LoRa.beginPacket();
         LoRa.print(msg);
         LoRa.endPacket();
+    }
+}
+
+void handleLora() {
+    int packetSize = LoRa.parsePacket();
+    if (packetSize) {
+        while ( LoRa.available() ) {
+            LoRaData = LoRa.readString();
+            Serial.println(LoRaData);
+            if (LoRaData == "Onboard Hello") {
+                Serial.println("ACK");
+            }
+        }
     }
 }
