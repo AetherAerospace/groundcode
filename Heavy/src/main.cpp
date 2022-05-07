@@ -3,6 +3,7 @@
 #include <LoRa.h>
 #include <Wire.h>
 #include "main/Web.h"
+#include "main/Input.h"
 #include "util/WiFi.h"
 #include "util/Comms.h"
 #include "util/Serial.h"
@@ -12,6 +13,7 @@
 void setup() {
     Serial.begin(115200);
     initOLED();
+    initInput();
     initLoRa();
     initWiFi();
     initWeb();
@@ -20,4 +22,6 @@ void setup() {
     while (!checkComm());
 }
 
-void loop() {}
+void loop() {
+    inputListener();
+}
